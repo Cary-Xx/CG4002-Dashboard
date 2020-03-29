@@ -1,0 +1,43 @@
+.column1 {
+    background-color: #a1edcc;
+    width: 33%;
+    height: 100%;
+    float: left;
+    margin: auto;
+}
+
+.column2 {
+    background-color: #a0e9ed;
+    width: 33%;
+    height: 100%;
+    float: left;
+}
+
+.column3 {
+    background-color: #f497f1;
+    width: 33%;
+    height: 100%;
+    float: left;
+}
+
+.row1 {
+    background-color:  #f497f1;
+    /* margin: auto; */
+    width: 100%;
+    height: 25vh;
+}
+
+.row2 {
+    background-color:  #f497f1;
+    /* margin: auto; */
+    width: 100%;
+    height: 68vh;
+    overflow: hidden;
+}
+
+.rtchart {
+    height: 40%;
+    width: 90%;
+    margin: auto;
+    padding-top: 1%;
+}
