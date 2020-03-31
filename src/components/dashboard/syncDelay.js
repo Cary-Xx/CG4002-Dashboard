@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../dashboard.css';
 
 export default class Delay extends Component {
     constructor(props) {
@@ -19,13 +20,16 @@ export default class Delay extends Component {
     //     return this.state.value !== nextState.value;
     // }
 
+    shouldComponentUpdate(newProps) {
+        return this.props.value !== newProps.value
+    }
+
     render() {
-        const { value } = this.props;
+        const value = this.props.value;
         return (
-            < div align='center' >
-                {/* <h4> Delay </h4> */}
-                <p>{value}</p>
-            </div >
+            <div className='boxUp'>
+                {value}
+            </div>
         )
     }
 }

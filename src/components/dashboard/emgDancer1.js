@@ -40,6 +40,17 @@ export default class EmgDancer1 extends Component {
                     label: 'Value'
                 }
             }
+            ,
+            size: {
+                width: 420,
+                height: 255
+            }
+            // ,
+            // title: {
+            //     show: false,
+            //     text: 'Emg',
+            //     position: 'top-center',
+            // }
         }
         return (
             <div>

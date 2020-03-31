@@ -36,6 +36,7 @@ export default class ValidmoveList extends Component {
     render() {
         return (
             <div>
+                <br />
                 <h3>Logged Valid Movements</h3>
                 <table className="table" style={{ border: '1px solid black' }}>
                     <thead className="thead-light">

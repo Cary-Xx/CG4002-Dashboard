@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import RTChart from 'react-rt-chart';
 
+var index = 0;
+
 export default class ImuDancer1 extends Component {
     constructor(props) {
         super(props);
@@ -24,12 +26,17 @@ export default class ImuDancer1 extends Component {
     //     return this.state.value !== nextState.value;
     // }
 
+    // shouldComponentUpdate(newProps) {
+    //     return this.props.value !== newProps.value
+    // }
+
     render() {
+        index ++;
         const value = this.props.value;
         const values = value.toString().split(' ');
         // console.log(values.toString());
         // const values = value.split(",");
-        console.log("imu1");
+        // console.log("imu1");
         // console.log(parseInt(values[0]));
         // console.log(parseInt(values[1]));
         // console.log(parseInt(values[2]));
@@ -44,7 +51,7 @@ export default class ImuDancer1 extends Component {
         // console.log(typeof parseInt(values[5]));
 
         var dataImu = {
-            date: new Date(),
+            date: index,
             Acc_X: parseInt(values[0]),
             Acc_Y: parseInt(values[1]),
             Acc_Z: parseInt(values[2]),
@@ -55,13 +62,51 @@ export default class ImuDancer1 extends Component {
         var chart = {
             axis: {
                 x: {
-                    label: 'Time'
+                    label: 'Time',
+                    tick: {
+                        format: ' ',
+                        fit: true,
+                        count: 6,
+                        fill: 'white'
+                    }
                 },
                 y: {
                     label: 'Value'
+                    
                 }
             }
+            ,
+            size: {
+                width: 420,
+                // height: 255
+                height: 500
+            },
+            grid: {
+                y: {
+                    show: true
+                },
+                x: {
+                    show: true
+                }
+            }
+            // ,
+            // legend: {
+            //     position: 'inset',
+            //     inset: {
+            //         anchor: 'top-left',
+            //         x: 20,
+            //         y: 0,
+            //         step: 1
+            //     },
+            // }
+            // ,
+            // title: {
+            //     show: false,
+            //     text: 'Imu',
+            //     position: 'top-center',
+            // }
         }
+        // console.log('test');
         return (
             // <div>
             <RTChart

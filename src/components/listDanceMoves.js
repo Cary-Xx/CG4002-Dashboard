@@ -51,6 +51,7 @@ export default class DancemoveList extends Component {
   render() {
     return (
       <div>
+        <br/>
         <h3>Logged Dancemoves</h3>
         <table className="table" style={{ border: '1px solid black' }}>
           <thead className="thead-light">

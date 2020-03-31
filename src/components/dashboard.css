@@ -1,43 +1,150 @@
-.column1 {
-    background-color: #a1edcc;
-    width: 33%;
-    height: 100%;
-    float: left;
+.rowUp {
+    /* background-color:  #f497f1; */
+    /* background-color: #96bbbb; */
+    width: 100%;
+    height: 22vh;
+    text-align: center;
     margin: auto;
 }
 
-.column2 {
-    background-color: #a0e9ed;
-    width: 33%;
-    height: 100%;
-    float: left;
-}
-
-.column3 {
-    background-color: #f497f1;
-    width: 33%;
-    height: 100%;
-    float: left;
-}
-
-.row1 {
-    background-color:  #f497f1;
+.rowDown {
+    /* background-color:  #f497f1; */
+    /* background-color: #96bbbb; */
     /* margin: auto; */
     width: 100%;
-    height: 25vh;
+    height: 70vh;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    /* overflow: hidden; */
 }
 
-.row2 {
-    background-color:  #f497f1;
-    /* margin: auto; */
+.columnUp {
+    /* background-color: #a1edcc; */
+    /* background-color: #96bbbb; */
     width: 100%;
-    height: 68vh;
-    overflow: hidden;
+    height: 100%;
+    /* width: 33%; */
+    /* height: 100%; */
+    /* float: left; */
+    /* margin: auto; */
+}
+
+.splitter {
+    border-left: 15px solid white;
+    height: 100%;
+}
+
+.columnDown {
+    /* background-color: #a1edcc; */
+    background-color: #2f4858;
+    /* width: 33%;
+    height: 100%; */
+    /* float: left; */
+    width: 100%;
+    height: 100%;
+    margin: 8px;
 }
 
 .rtchart {
-    height: 40%;
+    /* height: 30%; */
     width: 90%;
+}
+
+.c3-axis-x {
+    fill: none;
+    stroke: wheat;
+}
+
+.c3-axis-y {
+    fill: none;
+    stroke: wheat;
+}
+
+.c3-axis-y text {
+    stroke: rgb(221, 63, 89);
+    font-size: 11px;
+}
+
+.c3-axis-x text {
+    stroke: rgb(221, 63, 89);
+    font-size: 11px;
+}
+
+.c3-axis-x line {
+    fill: white;
+    stroke: wheat;
+}
+
+.titleContainer {
+    background-color: #de9151;
+    height: 35%;
+    width: 45%;
+    padding: 5px;
+    text-align: center;
+    margin: 2px auto;
+}
+
+.roundedContainer {
+    /* background-color: #2f4858; */
+    border-radius: 20px;
+    border: 10px solid #2f4858;
+    /* padding: 20px; */
+    width: 98%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.boxUp {
+    color: #ffffff;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 100px;
+    /* margin: 0 0 24px; */
+    text-align: center;
     margin: auto;
-    padding-top: 1%;
+    /* text-transform: uppercase; */
+}
+
+.emgBox {
+    border-radius: 20px;
+    border: 10px solid #2f4858;
+    background-color: black;
+    height: 32%;
+    width: 100%;
+    margin: auto;
+    border-collapse: inherit;
+}
+
+.emgTable {
+    /* border-radius: 20px;
+    border: 10px solid #2f4858; */
+    /* background-color: black; */
+    height: 100%;
+    width: 100%;
+    /* margin: auto; */
+    /* border-collapse: inherit; */
+}
+
+.tr {
+    text-align: center;
+    color: white;
+}
+
+.td {
+    text-align: center;
+    color: #de9151;
+    /* border: 1px solid rgb(196, 19, 19); */
+    border-bottom: 1px solid rgb(196, 19, 19);
+    /* border-left: 1px solid rgb(196, 19, 19); */
+    border-right: 1px solid rgb(196, 19, 19);
+}
+
+.tbody {
+    text-align: center;
+    font-size: smaller;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../dashboard.css';
 
 export default class Position extends Component {
     constructor(props) {
@@ -18,14 +19,16 @@ export default class Position extends Component {
     // shouldComponentUpdate(nextState) {
     //     return this.state.value !== nextState.value;
     // }
+    shouldComponentUpdate(newProps) {
+        return this.props.value !== newProps.value
+    }
 
     render() {
-        const { value } = this.props;
+        const splitValue = this.props.value.replace(/-/g, ' ').replace(/'/g, ' ');
         return (
-            < div >
-                {/* <h4> Delay </h4> */}
-                <p>{value}</p>
-            </div >
+            <div className='boxUp'>
+                {splitValue}
+            </div>
         )
     }
 }

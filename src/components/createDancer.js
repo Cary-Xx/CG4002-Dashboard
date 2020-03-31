@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class CreateDancer extends Component {
@@ -29,7 +29,7 @@ export default class CreateDancer extends Component {
     console.log(dancer);
 
     axios.post('http://localhost:5000/dancers/add', dancer)
-        .then(res => console.log(res.data));
+      .then(res => console.log(res.data));
 
     this.setState({
       username: ''
@@ -38,23 +38,24 @@ export default class CreateDancer extends Component {
 
   render() {
     return (
-        <div>
-          <h3>Create New Dancer</h3>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <label>Username: </label>
-              <input type="text"
-                     required
-                     className="form-control"
-                     value={this.state.username}
-                     onChange={this.onChangeUsername}
-              />
-            </div>
-            <div className="form-group">
-              <input type="submit" value="Create Dancer" className="btn btn-primary"/>
-            </div>
-          </form>
-        </div>
+      <div>
+        <br />
+        <h3>Create New Dancer</h3>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <label>Username: </label>
+            <input type="text"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
+            />
+          </div>
+          <div className="form-group">
+            <input type="submit" value="Create Dancer" className="btn btn-primary" />
+          </div>
+        </form>
+      </div>
     )
   }
 }

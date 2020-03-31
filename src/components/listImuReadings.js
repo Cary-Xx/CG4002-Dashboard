@@ -32,14 +32,15 @@ export default class ImuReadingList extends Component {
   }
 
   imuReadingList() {
-    return this.state.imuReadings.reverse().map(currentImu => {
-      return <ImuReading imuReading={currentImu}/>;
+    return this.state.imuReadings.reverse().slice(0, 500).map(currentImu => {
+      return <ImuReading imuReading={currentImu} />;
     })
   }
 
   render() {
     return (
       <div>
+        <br />
         <h3>Logged ImuReading</h3>
         <table className="table" style={{ border: '1px solid black' }}>
           <thead className="thead-light">

@@ -52,8 +52,9 @@ const WebSocket = require('ws');
 const wsServer = new WebSocket.Server({ port: wsPort });
 wsServer.on('connection', function connection(ws) {
     ws.on('message', function incoming(rawInput) {
-        console.log('received: %s', rawInput);
+        console.log('backend received: %s', rawInput);
         splitData = processRawData(rawInput);
+        console.log("after split: ", splitData.toString());
         const realData = insertData(splitData);
         wsServer.clients.forEach(function each(client) {
             if (client !== ws && client.readyState === WebSocket.OPEN) {
@@ -80,23 +81,26 @@ function processRawData(rawData) {
 
 function processMAC(macAddr) {
     switch (macAddr) {
-        case "F4:5E:AB:B0:91:1C":
+        case "50:f1:4a:cc:06:7f":
             return 1;
-        case "50:F1:4A:CC:06:7F":
+        case "0c:b2:b7:24:9a:b4":
             return 2;
-        case "78:DB:2F:BF:3B:08":
+        case "0c:b2:b7:24:a5:59":
             return 3;
+        // emg
+        // case "0c:b2:b7:24:a5:01"
     }
 }
 
 function insertData(data) {
+    console.log(data.toString())
     switch (data.length) {
         // 3 valid move data
-        case 3:
+        case 6:
             const validmove = new ValidmoveSchema({
-                position: data[0],
-                danceType: data[1],
-                syncDelay: data[2]
+                position: data[3],
+                danceType: data[4],
+                syncDelay: data[5]
             });
             validmove.save(function (err) {
                 if (err) return console.error(err);
@@ -106,7 +110,7 @@ function insertData(data) {
         // 5 emg reading
         case 8:
             const emg = new EmgSchema({
-                dancer: processMAC(data[0]),
+                dancer: '2',
                 //data[1]
                 //data[2]
                 emg1: data[3],

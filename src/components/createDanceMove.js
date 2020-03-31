@@ -83,6 +83,7 @@ export default class CreateDanceMove extends Component {
   render() {
     return (
     <div>
+              <br/>
       <h3>Create New Dancemove Log</h3>
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
