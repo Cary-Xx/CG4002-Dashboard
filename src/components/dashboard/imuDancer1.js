@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import RTChart from 'react-rt-chart';
 import '../dashboard.css'
-// import { LineChart, XAxis, CartesianGrid, Tooltip, Line } from 'recharts';
 
 var index = 0;
 
@@ -47,7 +46,6 @@ export default class ImuDancer1 extends Component {
             Gyro_Z: (parseFloat(splitValues[5]) / 131).toFixed(6)
         };
 
-        // if (value.length !== 0) {
         var chart = {
             data: {
                 rows: [
@@ -60,9 +58,6 @@ export default class ImuDancer1 extends Component {
                     Gyro_X: 'y2',
                     Gyro_Y: 'y2',
                     Gyro_Z: 'y2'
-                },
-                point: {
-                    show: false
                 }
             },
             axis: {
@@ -100,44 +95,26 @@ export default class ImuDancer1 extends Component {
             ,
             size: {
                 width: 470,
-                height: 500
+                height: 560
             },
-            // grid: {
-            //     y: {
-            //         show: true
-            //     },
-            //     x: {
-            //         show: true
-            //     }
-            // }
-            // ,
+            grid: {
+                y: {
+                    show: true
+                },
+                x: {
+                    show: true
+                }
+            }
         }
-        // }
         return (
             <div id='chart'>
                 <RTChart
                     data={dataImu}
                     chart={chart}
                     fields={['Acc_X', 'Acc_Y', 'Acc_Z', 'Gyro_X', 'Gyro_Y', 'Gyro_Z']}
-                    // maxValues='10'
+                    maxValues='16'
                 />
             </div>
-
-
-            // <LineChart
-            //     width={400}
-            //     height={400}
-            //     data={dataImu}
-            //     margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-            // >
-            //     <XAxis dataKey="name" />
-            //     <Tooltip />
-            //     <CartesianGrid stroke="#f5f5f5" />
-            //     <Line type="monotone" dataKey="uv" stroke="#ff7300" yAxisId={0} />
-            //     <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} />
-            // </LineChart>
-
-            // </div>
         )
     }
 }

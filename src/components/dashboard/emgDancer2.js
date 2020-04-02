@@ -44,53 +44,13 @@ export default class EmgDancer2 extends Component {
     }
 
     render() {
-
         const value = this.props.value;
-        const splitData = value.split(' ');
-        // const values = value.toString().replace(/ /g, '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0');
-        // const display = '\xa0\xa0' + values.toString() + '\xa0\xa0';
-        // values.forEach(element => {
-        //     element = element + ' '
-        // });
-        // var dataEmg = {
-        //     date: new Date(),
-        //     Emg_1: parseInt(values[0]),
-        //     Emg_2: parseInt(values[1]),
-        //     Emg_3: parseInt(values[2]),
-        //     Emg_4: parseInt(values[3]),
-        //     Emg_5: parseInt(values[4])
-        // }
-        // var chart = {
-        //     axis: {
-        //         x: {
-        //             label: 'Time'
-        //         },
-        //         y: {
-        //             label: 'Value'
-        //         }
-        //     },
-        //     size: {
-        //         width: 420,
-        //         height: 255
-        //     }
-        //     // ,
-        //     // title: {
-        //     //     show: false,
-        //     //     text: 'Emg',
-        //     //     position: 'top-center',
-        //     // }
-        // }
+        const splitData = value.toString().split(' ');
+
         this.processEmgData(splitData);
         tableRows.unshift(splitData);
-        // console.log("AA" + splitData);
-        // console.log("Table" + tableRows)
-        return (
-            // <RTChart
-            //     chart={chart}
-            //     fields={['Emg_1', 'Emg_2', 'Emg_3', 'Emg_4', 'Emg_5']}
-            //     data={dataEmg} />
-            // <div>
 
+        return (
             <table className="emgTable">
                 <thead className="thead-light">
                     <tr className='tr'>

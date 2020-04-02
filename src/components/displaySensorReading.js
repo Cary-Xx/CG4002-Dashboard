@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import SplitPane from 'react-split-pane';
 import './dashboard.css';
 
 import Position from './dashboard/position';
@@ -97,7 +96,6 @@ export default class DisplaySensorReading extends Component {
                 this.setState({
                   imu1: newDataImu
                 })
-                counterImu = 0;
                 break;
               case '2':
                 this.setState({
@@ -111,7 +109,6 @@ export default class DisplaySensorReading extends Component {
                 })
                 break;
               default:
-                // console.log("Default" + splitData[3]);
                 break;
             }
           }

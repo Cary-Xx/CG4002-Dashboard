@@ -57,9 +57,6 @@ export default class ImuDancer3 extends Component {
                     Gyro_X: 'y2',
                     Gyro_Y: 'y2',
                     Gyro_Z: 'y2'
-                },
-                point: {
-                    show: false
                 }
             },
             axis: {
@@ -97,26 +94,24 @@ export default class ImuDancer3 extends Component {
             ,
             size: {
                 width: 470,
-                height: 500
+                height: 560
             },
-            // grid: {
-            //     y: {
-            //         show: true
-            //     },
-            //     x: {
-            //         show: true
-            //     }
-            // }
-            // ,
+            grid: {
+                y: {
+                    show: true
+                },
+                x: {
+                    show: true
+                }
+            }
         }
-        // }
         return (
             <div id='chart'>
                 <RTChart
                     data={dataImu}
                     chart={chart}
                     fields={['Acc_X', 'Acc_Y', 'Acc_Z', 'Gyro_X', 'Gyro_Y', 'Gyro_Z']}
-                    // maxValues='10'
+                    maxValues='16'
                 />
             </div>
         )

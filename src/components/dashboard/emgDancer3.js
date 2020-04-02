@@ -44,12 +44,6 @@ export default class EmgDancer3 extends Component {
                 width: 420,
                 height: 255
             }
-            // ,
-            // title: {
-            //     show: false,
-            //     text: 'Emg',
-            //     position: 'top-center',
-            // }
         }
         return (
             <RTChart

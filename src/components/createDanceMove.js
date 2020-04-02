@@ -76,13 +76,13 @@ export default class CreateDanceMove extends Component {
     console.log(dancemove);
 
     axios.post('http://localhost:5000/dancemoves/add', dancemove)
-      .then(res => console.log(res.data))
+      .then(res => console.log(res.data), window.alert("Dancemove Successfully Added"))
+
       .catch((error) => {
         console.log(error)
       });
 
-    // window.alert("Dancemove Successfully Added");
-    // window.location = '/';
+    window.location = '/dancemoves';
   }
 
   render() {

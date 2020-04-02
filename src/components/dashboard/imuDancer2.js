@@ -95,27 +95,25 @@ export default class ImuDancer2 extends Component {
             }
             ,
             size: {
-                width: 450,
-                height: 320
+                width: 455,
+                height: 370
             },
-            // grid: {
-            //     y: {
-            //         show: true
-            //     },
-            //     x: {
-            //         show: true
-            //     }
-            // }
-            // ,
+            grid: {
+                y: {
+                    show: true
+                },
+                x: {
+                    show: true
+                }
+            }
         }
-        // }
         return (
             <div id='chart'>
                 <RTChart
                     data={dataImu}
                     chart={chart}
                     fields={['Acc_X', 'Acc_Y', 'Acc_Z', 'Gyro_X', 'Gyro_Y', 'Gyro_Z']}
-                    // maxValues='10'
+                    maxValues='16'
                 />
             </div>
         )

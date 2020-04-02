@@ -89,7 +89,7 @@ export default class EditDancemove extends Component {
     axios.post('http://localhost:5000/dancemoves/update/' + this.props.match.params.id, dancemove)
         .then(res => console.log(res.data));
 
-    window.location = '/';
+    window.location = '/dancemoves';
   }
 
   render() {

@@ -1,13 +1,13 @@
 .rowUp {
     width: 100%;
-    height: 22vh;
+    height: 23vh;
     text-align: center;
     margin: auto;
 }
 
 .rowDown {
     width: 100%;
-    height: 69vh;
+    height: 68vh;
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -111,7 +111,7 @@
 
 .titleContainer {
     background-color: #de9151;
-    height: 35%;
+    height: 38%;
     width: 45%;
     padding: 5px;
     text-align: center;
@@ -119,7 +119,6 @@
 }
 
 .roundedContainer {
-    /* background-color: #2f4858; */
     border-radius: 20px;
     border: 10px solid #2f4858;
     /* padding: 20px; */
@@ -128,7 +127,7 @@
     display: flex;
     flex-direction: row;
     text-align: center;
-    margin: 6px auto;
+    margin: 8px auto;
 }
 
 .boxUp {
