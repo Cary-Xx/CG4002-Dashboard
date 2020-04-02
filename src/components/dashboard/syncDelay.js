@@ -26,9 +26,10 @@ export default class Delay extends Component {
 
     render() {
         const value = this.props.value;
+        const split = value.replace(/'/g, '');
         return (
             <div className='boxUp'>
-                {value}
+                {split}
             </div>
         )
     }

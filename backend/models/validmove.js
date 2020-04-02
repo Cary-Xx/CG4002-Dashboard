@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 /**
- * Database schema for input valid move
+ * Database schema for valid move
  */
 const validmoveSchema = new Schema({
     position: {type: String, required: true},
     danceType: {type: String, required: true},
-    syncDelay: {type: Number, required: true}
+    syncDelay: {type: String, required: true}
 }, {
     timestamps: true,
 });

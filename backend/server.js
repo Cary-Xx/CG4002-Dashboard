@@ -30,6 +30,9 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 });
 
+/**
+ * Routers
+ */
 const dancemovesRouter = require('./routes/dancemoves');
 const dancersRouter = require('./routes/dancers');
 const imusRouter = require('./routes/imus');
@@ -47,19 +50,23 @@ app.listen(PORT, () => {
 });
 
 // following code is to establish real-time communication with ultra96
-var splitData;
+var newInput;
+var counterDataReceived = 0;
+
 const WebSocket = require('ws');
 const wsServer = new WebSocket.Server({ port: wsPort });
 wsServer.on('connection', function connection(ws) {
     ws.on('message', function incoming(rawInput) {
-        console.log('backend received: %s', rawInput);
-        splitData = processRawData(rawInput);
-        console.log("after split: ", splitData.toString());
-        const realData = insertData(splitData);
+        if (counterDataReceived == 100) {
+            console.log("100 data received");
+            counterDataReceived = 0;
+        }
+        counterDataReceived++;
+        newInput = processRawData(rawInput);
+        const realData = insertData(newInput);
+
         wsServer.clients.forEach(function each(client) {
             if (client !== ws && client.readyState === WebSocket.OPEN) {
-                console.log("client ready");
-                // client should only refer to express server
                 client.send(realData.toString());
             }
         });
@@ -93,55 +100,56 @@ function processMAC(macAddr) {
 }
 
 function insertData(data) {
-    console.log(data.toString())
     switch (data.length) {
         // 3 valid move data
-        case 6:
+        case 3:
+            console.log("case3" + data.toString());
             const validmove = new ValidmoveSchema({
-                position: data[3],
-                danceType: data[4],
-                syncDelay: data[5]
+                position: data[0],
+                danceType: data[1],
+                syncDelay: data[2]
             });
             validmove.save(function (err) {
                 if (err) return console.error(err);
                 console.log("Validmove added successful");
             });
             return validmove;
-        // 5 emg reading
-        case 8:
-            const emg = new EmgSchema({
-                dancer: '2',
-                //data[1]
-                //data[2]
-                emg1: data[3],
-                emg2: data[4],
-                emg3: data[5],
-                emg4: data[6],
-                emg5: data[7]
-            });
-            emg.save(function (err) {
-                if (err) return console.error(err);
-                console.log("Emg sensor reading successful");
-            });
-            return emg;
-        // 6 sensor reading   
-        case 9:
-            const imu = new ImuSchema({
-                dancer: processMAC(data[0]),
-                //data[1]
-                //data[2]
-                wristAccX: data[3],
-                wristAccY: data[4],
-                wristAccZ: data[5],
-                wristGyroX: data[6],
-                wristGyroY: data[7],
-                wristGyroZ: data[8],
-            });
-            imu.save(function (err) {
-                if (err) return console.error(err);
-                console.log("Imu sensor reading successful");
-            });
-            return imu;
+        // IMU: mac, index, checksum, data1 - data5, 0 ,0 ,0
+        // EMG: mac, index, checksum, data1 - data6, 0 ,0
+        case 11:
+            if (data[1] === '4' || data[1] === '7') {
+                const imu = new ImuSchema({
+                    dancer: processMAC(data[0]),
+                    wristAccX: data[3],
+                    wristAccY: data[4],
+                    wristAccZ: data[5],
+                    wristGyroX: data[6],
+                    wristGyroY: data[7],
+                    wristGyroZ: data[8],
+                });
+                imu.save(function (err) {
+                    if (err) return console.error(err);
+                    console.log("Imu sensor reading successful");
+                });
+                return imu;
+            } else if (data[1] === '5') {
+                const emg = new EmgSchema({
+                    dancer: '2',
+                    emg1: data[3],
+                    emg2: data[4],
+                    emg3: data[5],
+                    emg4: data[6],
+                    emg5: data[7]
+                });
+                emg.save(function (err) {
+                    if (err) return console.error(err);
+                    console.log("Emg sensor reading successful");
+                });
+                return emg;
+            }
+
+        default:
+            console.log("default" + data.toString());
         // not sure data transfer will overlap
         // case 21:
         //     const sensorPlus = new ImuSchema({
@@ -179,7 +187,5 @@ function insertData(data) {
         //         console.log("validmove with sensor reading added successful");
         //     });
         //     return;
-        default:
-            return;
     }
 }

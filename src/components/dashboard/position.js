@@ -25,9 +25,11 @@ export default class Position extends Component {
 
     render() {
         const splitValue = this.props.value.replace(/-/g, ' ').replace(/'/g, ' ');
+        const newValue = splitValue.split("").join(" ");
+
         return (
             <div className='boxUp'>
-                {splitValue}
+                {newValue}
             </div>
         )
     }

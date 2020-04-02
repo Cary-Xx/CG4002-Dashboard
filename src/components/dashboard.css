@@ -1,6 +1,4 @@
 .rowUp {
-    /* background-color:  #f497f1; */
-    /* background-color: #96bbbb; */
     width: 100%;
     height: 22vh;
     text-align: center;
@@ -8,26 +6,16 @@
 }
 
 .rowDown {
-    /* background-color:  #f497f1; */
-    /* background-color: #96bbbb; */
-    /* margin: auto; */
     width: 100%;
-    height: 70vh;
+    height: 69vh;
     display: flex;
     flex-direction: row;
     text-align: center;
-    /* overflow: hidden; */
 }
 
 .columnUp {
-    /* background-color: #a1edcc; */
-    /* background-color: #96bbbb; */
     width: 100%;
     height: 100%;
-    /* width: 33%; */
-    /* height: 100%; */
-    /* float: left; */
-    /* margin: auto; */
 }
 
 .splitter {
@@ -36,20 +24,46 @@
 }
 
 .columnDown {
-    /* background-color: #a1edcc; */
     background-color: #2f4858;
-    /* width: 33%;
-    height: 100%; */
-    /* float: left; */
+    border-radius: 20px;
     width: 100%;
     height: 100%;
     margin: 8px;
 }
 
 .rtchart {
-    /* height: 30%; */
-    width: 90%;
+    width: 100%;
+    padding: 0 auto;
+    margin: 0 auto;
 }
+
+/* #chart .c3-circles {
+    display: none;
+} */
+
+/* #chart .c3-circles-Acc_X {
+    display: none;
+}
+
+#chart .c3-circles-Acc_Y {
+    display: none;
+}
+
+#chart .c3-circles-Acc_Z {
+    display: none;
+}
+
+#chart .c3-circles-Gyro_X {
+    display: none;
+}
+
+#chart .c3-circles-Gyro_Y {
+    display: none;
+}
+
+#chart .c3-circles-Gyro_Z {
+    display: none;
+} */
 
 .c3-axis-x {
     fill: none;
@@ -61,19 +75,33 @@
     stroke: wheat;
 }
 
-.c3-axis-y text {
-    stroke: rgb(221, 63, 89);
-    font-size: 11px;
+.c3-axis-y2 {
+    fill: none;
+    stroke: wheat;
 }
 
 .c3-axis-x text {
-    stroke: rgb(221, 63, 89);
+    stroke: wheat;
+    font-size: 11px;
+}
+
+.c3-axis-y text {
+    stroke: wheat;
+    font-size: 11px;
+}
+
+.c3-axis-y2 text {
+    stroke: wheat;
     font-size: 11px;
 }
 
 .c3-axis-x line {
     fill: white;
     stroke: wheat;
+}
+
+.c3 path, .c3 line {
+    fill: none;
 }
 
 .titleContainer {
@@ -90,12 +118,12 @@
     border-radius: 20px;
     border: 10px solid #2f4858;
     /* padding: 20px; */
-    width: 98%;
+    width: 99%;
     height: 100%;
     display: flex;
     flex-direction: row;
     text-align: center;
-    margin: 10px auto;
+    margin: 6px auto;
 }
 
 .boxUp {
@@ -106,42 +134,39 @@
     line-height: 100px;
     /* margin: 0 0 24px; */
     text-align: center;
-    margin: auto;
+    width: 100%
     /* text-transform: uppercase; */
 }
 
 .emgBox {
     border-radius: 20px;
     border: 10px solid #2f4858;
-    background-color: black;
+    background-color: #de9151;
     height: 32%;
     width: 100%;
     margin: auto;
-    border-collapse: inherit;
 }
 
 .emgTable {
-    /* border-radius: 20px;
-    border: 10px solid #2f4858; */
-    /* background-color: black; */
     height: 100%;
     width: 100%;
+    table-layout: fixed;
     /* margin: auto; */
     /* border-collapse: inherit; */
 }
 
 .tr {
     text-align: center;
-    color: white;
+    color: rgb(17, 5, 5);
+    height: 32%;
+    white-space: nowrap;
 }
 
 .td {
     text-align: center;
-    color: #de9151;
-    /* border: 1px solid rgb(196, 19, 19); */
-    border-bottom: 1px solid rgb(196, 19, 19);
-    /* border-left: 1px solid rgb(196, 19, 19); */
-    border-right: 1px solid rgb(196, 19, 19);
+    color: black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .tbody {

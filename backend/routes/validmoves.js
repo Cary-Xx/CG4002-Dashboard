@@ -10,7 +10,7 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
     const position = req.body.position;
     const danceType = req.body.danceType;
-    const syncDelay = Number(req.body.syncDelay);
+    const syncDelay = req.body.syncDelay;
 
     const newValidmove = new Validmove({
         position,

@@ -26,39 +26,38 @@ export default class Move extends Component {
 
     render() {
         const value = this.props.value.replace(/'/g, '');
-        var type;
-        switch (value) {
-            case '1':
-                type = 'Dumbbell'
-                break;
-            case '2':
-                type = 'Facewipe'
-                break;
-            case 3:
-                type = 'Muscle'
-                break;
-            case 4:
-                type = 'Pacman'
-                break;
-            case 5:
-                type = 'ShootingStar'
-                break;
-            case 6:
-                type = 'Shoutout'
-                break;
-            case 7:
-                type = 'Tornado'
-                break;
-            case 8:
-                type = 'Weightlifting'
-                break;
-            default:
-                type = ''
-                break;
-        }
+        // switch (value) {
+        //     case '1':
+        //         type = 'Dumbbell'
+        //         break;
+        //     case '2':
+        //         type = 'Facewipe'
+        //         break;
+        //     case 3:
+        //         type = 'Muscle'
+        //         break;
+        //     case 4:
+        //         type = 'Pacman'
+        //         break;
+        //     case 5:
+        //         type = 'ShootingStar'
+        //         break;
+        //     case 6:
+        //         type = 'Shoutout'
+        //         break;
+        //     case 7:
+        //         type = 'Tornado'
+        //         break;
+        //     case 8:
+        //         type = 'Weightlifting'
+        //         break;
+        //     default:
+        //         type = ''
+        //         break;
+        // }
         return (
             <div className='boxUp'>
-                {type}
+                {value}
             </div>
         )
     }

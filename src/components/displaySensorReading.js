@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import SplitPane from 'react-split-pane';
-// import RTChart from 'react-rt-chart';
 import './dashboard.css';
 
 import Position from './dashboard/position';
@@ -11,29 +10,16 @@ import ImuDancer2 from './dashboard/imuDancer2';
 import ImuDancer3 from './dashboard/imuDancer3';
 import EmgDancer2 from './dashboard/emgDancer2';
 
-// var stateChange = '';
 var counterImu = 0;
 var counterEmg = 0;
-
-// counter value
-const imuFre = 10;
-const emgFre = 20;
+const imuFre = 2;
+const emgFre = 2;
 
 export default class DisplaySensorReading extends Component {
   constructor(props) {
     super(props);
 
-    // this.position = React.createRef();
-    // this.move = React.createRef();
-    // this.delay = React.createRef();
-    // this.imuDancer1 = React.createRef();
-    // this.imuDancer2 = React.createRef();
-    // this.imuDancer3 = React.createRef();
-    // this.emgDancer1 = React.createRef();
-    // this.emgDancer2 = React.createRef();
-    // this.emgDancer3 = React.createRef();
-
-    // this.handleImuDataChange1 = this.handleImuDataChange1.bind(this);
+    this.connect = this.connect.bind(this);
 
     this.state = {
       pos: '',
@@ -43,24 +29,29 @@ export default class DisplaySensorReading extends Component {
       imu2: '',
       imu3: '',
       emg: '',
-      // emg1: '',
-      // emg2: '',
-      // emg3: '',
       ws: '',
     }
   }
 
   componentDidMount() {
+    this.connect();
+  }
+
+  connect() {
     // same ip and port as express server
+
     // jw's hotspot
-    const URL = 'ws://192.168.43.222:7000'
+    // const URL = 'ws://192.168.43.222:7000'
     // zh's hotspot
     // const URL = 'ws://172.20.10.9:7000'
+    // cg4002 wifi
+    // const URL = 'ws://192.168.1.103:7000'
+    // raj's wifi
+    const URL = 'ws://192.168.86.35:7000'
+    var ws = new WebSocket(URL)
 
+    console.log("Attemp connecting");
     
-    // const URL = 'ws://172.25.96.131:7000'
-    const ws = new WebSocket(URL)
-
     // on connection
     ws.onopen = () => {
       console.log('Successfully connected to backend');
@@ -68,7 +59,6 @@ export default class DisplaySensorReading extends Component {
 
     // on receiving message
     ws.onmessage = e => {
-
       const inputData = JSON.stringify(e.data).trim().replace(/\\n/g, '');
       // String array
       // console.log("input data from frontend: ", inputData);
@@ -76,7 +66,7 @@ export default class DisplaySensorReading extends Component {
       // console.log("split data from frontend: ", splitData.toString());
       switch (splitData.length) {
         case 8:
-          console.log("validmove received on frontend");
+          console.log(splitData);
           this.setState({
             pos: splitData[3],
             move: splitData[5],
@@ -85,42 +75,23 @@ export default class DisplaySensorReading extends Component {
           break;
         case 14:
           counterEmg++;
-          if (counterEmg === 15) {
-            console.log("emg received on frontend");
+          if (counterEmg === emgFre) {
             // val val val val
             var newDataEmg = splitData[5] + ' ' + splitData[7] + ' ' + splitData[9] + ' ' + splitData[11] + ' ' + splitData[13];
             counterEmg = 0;
             this.setState({
               emg: newDataEmg
             })
-            // switch (splitData[3]) {
-            //   case 1:
-            //     this.setState({
-            //       emg1: newData
-            //     })
-            //     break;
-            //   case '2':
-            //     this.setState({
-            //       emg2: newData
-            //     })
-            //     break;
-            //   case '3':
-            //     this.setState({
-            //       emg3: newData
-            //     })
-            //     break;
-            //   default:
-            //     break;
-            // }
           }
           break;
         case 16:
           counterImu++;
-          if (counterImu === 10) {
-            console.log("imu received on frontend");
+          if (counterImu === imuFre) {
+            // console.log("imu received on frontend");
             // val val val val val val
             var newDataImu = splitData[5] + ' ' + splitData[7] + ' ' + splitData[9] + ' ' + splitData[11] + ' ' + splitData[13] + ' ' + splitData[15];
             counterImu = 0;
+            console.log(splitData.toString())
             switch (splitData[3]) {
               case '1':
                 this.setState({
@@ -134,6 +105,7 @@ export default class DisplaySensorReading extends Component {
                 })
                 break;
               case '3':
+                console.log("Default");
                 this.setState({
                   imu3: newDataImu
                 })
@@ -154,13 +126,14 @@ export default class DisplaySensorReading extends Component {
 
     ws.onclose = () => {
       console.log('disconnected from backend');
-      // automatically try to reconnect on connection loss
-      this.setState({
-        ws: new WebSocket(URL)
-      });
+      // try reconnection on connection loss
+      setTimeout(() => {
+        ws = null;
+        this.connect();
+      }, 500);
     }
+    return;
   }
-
   // handleImuDataChange1(e) {
   //   console.log("step2");
   //   this.setState({
@@ -244,66 +217,32 @@ export default class DisplaySensorReading extends Component {
   // }
 
   render() {
-    // const { imuData } = this.state.imuData;
-    // const { emgData } = this.state.emgData;
-    // const { validMove } = this.state.validMove;
-    // var dataImu;
-    // var dataEmg;
-    // // correspond to one data point on a chart
-    // switch (stateChange) {
-    //   case 'imu':
-    //     dataImu = {
-    //       dancer: this.state.imuData[0],
-    //       accX: this.state.imuData[1],
-    //       accY: this.state.imuData[2],
-    //       accZ: this.state.imuData[3],
-    //       gyroX: this.state.imuData[4],
-    //       gyroY: this.state.imuData[5],
-    //       gyroZ: this.state.imuData[6]
-    //     }
-    //     break;
-    //   case 'emg':
-    //     dataEmg = {
-    //       dancer: this.state.imuData[0],
-    //       emg1: this.state.imuData[1],
-    //       emg2: this.state.imuData[2],
-    //       emg3: this.state.imuData[3],
-    //       emg4: this.state.imuData[4],
-    //       emg5: this.state.imuData[5]
-    //     }
-    //     break;
-    //   case 'move':
-    //     break;
-    //   default:
-    //     break;
-    // }
-
     return (
       <div>
         <div className='rowUp'>
           <div className='roundedContainer'>
             <div className='columnUp'>
               <div className='titleContainer'>
-                <p style={{ font: 'courier', fontSize: '150%'}}> <b>Position</b> </p>
-                <Position value={this.state.pos} />
+                <p style={{ font: 'courier', fontSize: '150%' }}> <b>Position</b> </p>
               </div>
+              <Position value={this.state.pos} />
+
             </div>
             <div className='splitter'></div>
             <div className='columnUp'>
               <div className='titleContainer'>
                 <p style={{ font: 'courier', fontSize: '150%' }}> <b>Move</b> </p>
-                <Move value={this.state.move} />
               </div>
+              <Move value={this.state.move} />
             </div>
             <div className='splitter'></div>
             <div className='columnUp'>
               <div className='titleContainer'>
                 <p style={{ font: 'courier', fontSize: '150%' }}> <b>Delay</b> </p>
-                <Delay value={this.state.delay} />
               </div>
+              <Delay value={this.state.delay} />
             </div>
           </div>
-
         </div>
 
         <div className='rowDown'>
@@ -312,33 +251,21 @@ export default class DisplaySensorReading extends Component {
             <div className='rtchart'>
               <ImuDancer1 value={this.state.imu1} />
             </div>
-            {/* <div className='rtchart'>
-              <EmgDancer1 value={this.state.emg1} />
-            </div> */}
-
           </div>
           <div className='columnDown'>
             <p style={{ fontSize: '150%', textAlign: 'center', color: 'white' }}> <b>Dancer</b> &nbsp; <b>2</b></p>
             <div className='rtchart'>
               <ImuDancer2 value={this.state.imu2} />
             </div>
-            {/* <p style={{ fontSize: '100%', textAlign: 'center', color: 'white' }}> <b>Emg</b> &nbsp; </p> */}
             <div className='emgBox' style={{ overflowY: 'hidden' }}>
               <EmgDancer2 value={this.state.emg} />
             </div>
-
-            {/* <div className='rtchart'>
-              <EmgDancer2 value={this.state.emg2} />
-            </div> */}
           </div>
           <div className='columnDown'>
             <p style={{ fontSize: '150%', textAlign: 'center', color: 'white' }}> <b>Dancer</b> &nbsp; <b>3</b></p>
             <div className='rtchart'>
               <ImuDancer3 value={this.state.imu3} />
             </div>
-            {/* <div className='rtchart'>
-              <EmgDancer3 value={this.state.emg3} />
-            </div> */}
           </div>
         </div >
       </div >

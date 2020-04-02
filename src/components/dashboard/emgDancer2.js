@@ -21,7 +21,11 @@ export default class EmgDancer2 extends Component {
     // shouldComponentUpdate(nextState) {
     //     return this.state.value !== nextState.value;
     // }
-    
+    processEmgData(data) {
+        for (var i = 1; i < data.length; i++) {
+            data[i] = (parseFloat(data[i]) / 100).toFixed(1);
+        }
+    }
     iterateRows(table) {
         return table.map(function (row, i) {
             return (
@@ -76,6 +80,7 @@ export default class EmgDancer2 extends Component {
         //     //     position: 'top-center',
         //     // }
         // }
+        this.processEmgData(splitData);
         tableRows.unshift(splitData);
         // console.log("AA" + splitData);
         // console.log("Table" + tableRows)
@@ -86,21 +91,19 @@ export default class EmgDancer2 extends Component {
             //     data={dataEmg} />
             // <div>
 
-            <table className="emgTable" id='myTable'>
+            <table className="emgTable">
                 <thead className="thead-light">
                     <tr className='tr'>
-                        <th>Emg 1</th>
-                        <th>Emg 2</th>
-                        <th>Emg 3</th>
-                        <th>Emg 4</th>
-                        <th>Emg 5</th>
+                        <th>Average</th>
+                        <th>Slope Diff</th>
+                        <th>Peak</th>
+                        <th>MNF</th>
+                        <th>Power</th>
                     </tr>
                 </thead>
                 <tbody className='tbody'>
                     {this.iterateRows(tableRows)}
                 </tbody>
-
-                {/* {tableRows.forEach(element => <tbody className='tbody'>{element}</tbody>)} */}
             </table>
 
         )
