@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Dancemove = props => (
   <tr>
-    <td>{props.dancemove.name}</td>
+    <td>{props.dancemove.dancerName}</td>
     <td>{props.dancemove.description}</td>
     <td>{props.dancemove.duration}</td>
     <td>{props.dancemove.dateCreated.substring(0, 10)}</td>
@@ -56,7 +56,7 @@ export default class DancemoveList extends Component {
         <table className="table" style={{ border: '1px solid black' }}>
           <thead className="thead-light">
             <tr>
-              <th>Name</th>
+              <th>Dancer Name</th>
               <th>Description</th>
               <th>Duration</th>
               <th>DateCreated</th>

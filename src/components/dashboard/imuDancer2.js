@@ -58,7 +58,7 @@ export default class ImuDancer2 extends Component {
                     Gyro_Z: 'y2'
                 },
                 point: {
-                    show: true
+                    show: false
                 }
             },
             axis: {
@@ -115,7 +115,7 @@ export default class ImuDancer2 extends Component {
                     data={dataImu}
                     chart={chart}
                     fields={['Acc_X', 'Acc_Y', 'Acc_Z', 'Gyro_X', 'Gyro_Y', 'Gyro_Z']}
-                    maxValues='10'
+                    // maxValues='10'
                 />
             </div>
         )

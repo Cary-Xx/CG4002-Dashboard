@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RTChart from 'react-rt-chart';
+import '../dashboard.css'
 // import { LineChart, XAxis, CartesianGrid, Tooltip, Line } from 'recharts';
 
 var index = 0;
@@ -118,7 +119,7 @@ export default class ImuDancer1 extends Component {
                     data={dataImu}
                     chart={chart}
                     fields={['Acc_X', 'Acc_Y', 'Acc_Z', 'Gyro_X', 'Gyro_Y', 'Gyro_Z']}
-                    maxValues='10'
+                    // maxValues='10'
                 />
             </div>
 

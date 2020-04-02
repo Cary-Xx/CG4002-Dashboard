@@ -8,18 +8,17 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  const name = req.body.name;
+
+  const dancerName = req.body.dancerName;
   const description = req.body.description;
   const duration = Number(req.body.duration);
   const dateCreated = Date.parse(req.body.dateCreated);
-
   const newDanceMove = new DanceMove({
-    name,
+    dancerName,
     description,
     duration,
     dateCreated,
   });
-
   newDanceMove.save()
   .then(() => res.json('DanceMove added!'))
   .catch(err => res.status(400).json('Error: ' + err));

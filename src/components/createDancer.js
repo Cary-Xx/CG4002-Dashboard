@@ -31,6 +31,8 @@ export default class CreateDancer extends Component {
     axios.post('http://localhost:5000/dancers/add', dancer)
       .then(res => console.log(res.data));
 
+    window.alert("Dancer Successfully Added");
+
     this.setState({
       username: ''
     })

@@ -37,9 +37,9 @@
     margin: 0 auto;
 }
 
-/* #chart .c3-circles {
+#chart .c3-circles {
     display: none;
-} */
+}
 
 /* #chart .c3-circles-Acc_X {
     display: none;
@@ -102,6 +102,11 @@
 
 .c3 path, .c3 line {
     fill: none;
+    stroke-width: 2px;
+}
+
+.c3-legend-item {
+    fill: wheat;
 }
 
 .titleContainer {

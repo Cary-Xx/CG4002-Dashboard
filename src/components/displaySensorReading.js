@@ -12,8 +12,8 @@ import EmgDancer2 from './dashboard/emgDancer2';
 
 var counterImu = 0;
 var counterEmg = 0;
-const imuFre = 2;
-const emgFre = 2;
+const imuFre = 1;
+const emgFre = 1;
 
 export default class DisplaySensorReading extends Component {
   constructor(props) {

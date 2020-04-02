@@ -6,8 +6,8 @@ const Schema = mongoose.Schema;
  * Database schema for dancemove
  */
 const dancemoveSchema = new Schema({
-  name: { type: String, required: true },
-  description: { type: String },
+  dancerName: { type: String, required: true },
+  description: { type: String, required: true },
   duration: { type: Number, required: true },
   dateCreated: { type: Date, required: true },
 }, {
