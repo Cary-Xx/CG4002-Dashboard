@@ -32,10 +32,11 @@ export default class ImuDancer1 extends Component {
     }
 
     render() {
+        console.log("IMU1");
         index++;
         const value = this.props.value;
         const splitValues = value.toString().split(' ');
-
+        console.log(splitValues.toString());
         var dataImu = {
             date: index,
             Acc_X: (parseFloat(splitValues[0]) / 16384).toFixed(6),
@@ -112,7 +113,7 @@ export default class ImuDancer1 extends Component {
                     data={dataImu}
                     chart={chart}
                     fields={['Acc_X', 'Acc_Y', 'Acc_Z', 'Gyro_X', 'Gyro_Y', 'Gyro_Z']}
-                    maxValues='16'
+                    maxValues='15'
                 />
             </div>
         )

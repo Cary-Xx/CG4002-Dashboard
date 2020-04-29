@@ -111,7 +111,7 @@ export default class ImuDancer3 extends Component {
                     data={dataImu}
                     chart={chart}
                     fields={['Acc_X', 'Acc_Y', 'Acc_Z', 'Gyro_X', 'Gyro_Y', 'Gyro_Z']}
-                    maxValues='16'
+                    maxValues='15'
                 />
             </div>
         )

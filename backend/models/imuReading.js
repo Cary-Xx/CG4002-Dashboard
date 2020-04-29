@@ -13,17 +13,6 @@ const imuSchema = new Schema({
     wristGyroX: {type: Number, required: true},
     wristGyroY: {type: Number, required: true},
     wristGyroZ: {type: Number, required: true}
-
-    /**
-     * Following attributes are not required for now
-     */
-
-    // ankleAccX: {type: Number, required: true},
-    // ankleAccY: {type: Number, required: true},
-    // ankleAccZ: {type: Number, required: true},
-    // ankleGyroX: {type: Number, required: true},
-    // ankleGyroY: {type: Number, required: true},
-    // ankleGyroZ: {type: Number, required: true}
 }, {
     timestamps: true,
 });

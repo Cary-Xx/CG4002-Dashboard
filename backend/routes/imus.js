@@ -14,12 +14,6 @@ router.route('/add').post((req, res) => {
     const wristGyroX = Number(req.body.wristGyroX);
     const wristGyroY = Number(req.body.wristGyroY);
     const wristGyroZ = Number(req.body.wristGyroZ);
-    // const ankleAccX = Number(req.body.ankleAccX);
-    // const ankleAccY = Number(req.body.ankleAccY);
-    // const ankleAccZ = Number(req.body.ankleAccZ);
-    // const ankleGyroX = Number(req.body.ankleGyroX);
-    // const ankleGyroY = Number(req.body.ankleGyroY);
-    // const ankleGyroZ = Number(req.body.ankleGyroZ);
 
     const newImuReading = new Imu({
         wristAccX: wristAccX,
@@ -28,12 +22,6 @@ router.route('/add').post((req, res) => {
         wristGyroX: wristGyroX,
         wristGyroY: wristGyroY,
         wristGyroZ: wristGyroZ,
-        // ankleAccX: ankleAccX,
-        // ankleAccY: ankleAccY,
-        // ankleAccZ: ankleAccZ,
-        // ankleGyroX: ankleGyroX,
-        // ankleGyroY: ankleGyroY,
-        // ankleGyroZ: ankleGyroZ,
     });
 
     newImuReading.save()

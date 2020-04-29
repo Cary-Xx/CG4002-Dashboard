@@ -11,8 +11,8 @@ const ValidmoveSchema = require('./models/validmove');
 
 require('dotenv').config();
 
-const PORT = process.env.PORT || 5000;
-const wsPort = 7000;
+const PORT = process.env.PORT || 5050;
+const wsPort = 7070;
 
 app.use(cors());
 app.use(express.json());
@@ -57,14 +57,11 @@ const WebSocket = require('ws');
 const wsServer = new WebSocket.Server({ port: wsPort });
 wsServer.on('connection', function connection(ws) {
     ws.on('message', function incoming(rawInput) {
-        if (counterDataReceived == 100) {
-            console.log("100 data received");
-            counterDataReceived = 0;
-        }
+
         counterDataReceived++;
         newInput = processRawData(rawInput);
         const realData = insertData(newInput);
-
+        
         wsServer.clients.forEach(function each(client) {
             if (client !== ws && client.readyState === WebSocket.OPEN) {
                 client.send(realData.toString());
@@ -100,6 +97,7 @@ function processMAC(macAddr) {
 }
 
 function insertData(data) {
+    console.log(data + data.length)
     switch (data.length) {
         // 3 valid move data
         case 3:
@@ -114,9 +112,10 @@ function insertData(data) {
                 console.log("Validmove added successful");
             });
             return validmove;
-        // IMU: mac, index, checksum, data1 - data5, 0 ,0 ,0
-        // EMG: mac, index, checksum, data1 - data6, 0 ,0
+        // EMG: mac, index, checksum, data1 - data5, 0 ,0 ,0
+        // IMU: mac, index, checksum, data1 - data6, 0 ,0
         case 11:
+            // console.log("11")
             if (data[1] === '4' || data[1] === '7') {
                 const imu = new ImuSchema({
                     dancer: processMAC(data[0]),

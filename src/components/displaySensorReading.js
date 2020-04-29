@@ -38,15 +38,7 @@ export default class DisplaySensorReading extends Component {
 
   connect() {
     // same ip and port as express server
-
-    // jw's hotspot
-    // const URL = 'ws://192.168.43.222:7000'
-    // zh's hotspot
-    // const URL = 'ws://172.20.10.9:7000'
-    // cg4002 wifi
-    // const URL = 'ws://192.168.1.103:7000'
-    // raj's wifi
-    const URL = 'ws://192.168.86.35:7000'
+    const URL = 'ws://172.20.10.9:7070'
     var ws = new WebSocket(URL)
 
     console.log("Attemp connecting");
@@ -59,10 +51,8 @@ export default class DisplaySensorReading extends Component {
     // on receiving message
     ws.onmessage = e => {
       const inputData = JSON.stringify(e.data).trim().replace(/\\n/g, '');
-      // String array
-      // console.log("input data from frontend: ", inputData);
       const splitData = inputData.replace('{', '').replace('}', '').split(':').toString().replace(/\s/g, "").replace('"', '').replace('"', '').replace('"', '').split(",");
-      // console.log("split data from frontend: ", splitData.toString());
+      console.log("split data from frontend: ", splitData.toString());
       switch (splitData.length) {
         case 8:
           console.log(splitData);
@@ -86,11 +76,11 @@ export default class DisplaySensorReading extends Component {
         case 16:
           counterImu++;
           if (counterImu === imuFre) {
-            // console.log("imu received on frontend");
+            console.log("imu received on frontend");
             // val val val val val val
             var newDataImu = splitData[5] + ' ' + splitData[7] + ' ' + splitData[9] + ' ' + splitData[11] + ' ' + splitData[13] + ' ' + splitData[15];
             counterImu = 0;
-            console.log(splitData.toString())
+            // console.log(splitData.toString())
             switch (splitData[3]) {
               case '1':
                 this.setState({

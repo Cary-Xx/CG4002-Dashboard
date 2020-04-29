@@ -39,9 +39,9 @@ export default class EmgDancer2 extends Component {
         });
     };
 
-    shouldComponentUpdate(newProps) {
-        return this.props.value !== newProps.value
-    }
+    // shouldComponentUpdate(newProps) {
+    //     return this.props.value !== newProps.value
+    // }
 
     render() {
         const value = this.props.value;
